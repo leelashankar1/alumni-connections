@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leela Shankar: Alumni Connections, a Human-Centered Design Case Study</title>
+<meta name="description" content="A human-centered design case study: seven alumni interviews, 100 ideas, two prototypes, and what testing changed.">
+<style>
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(fonts/bricolage-grotesque-variable.woff2) format("woff2-variations")}
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/instrument-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/instrument-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/instrument-sans-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/instrument-sans-latin-400-italic.woff2) format("woff2")}
+:root{
+  --bg:#FAFAF6; --ink:#1E1E24; --mute:#5C6168; --rule:#DDDCD4; --panel:#F0EFE8; --tape:#4A8FD6; --tape-ink:#fff;
+  --c-traditions:#62B8C9; --c-voice:#D9A3B4; --c-transition:#E3B33B; --c-fun:#B06AB3; --c-studentlife:#5FA37A; --c-nontrans:#4A8FD6; --c-longterm:#E0894A;
+  --l-evidence:#E3B33B; --l-decision:#4A8FD6; --l-mine:#D4674F; --l-ship:#5FA37A;
+  --maxw:720px; --wide:1040px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1E1E24; --ink:#F2F1EC; --mute:#A9ACB3; --rule:#3A3B42; --panel:#2A2B32;
+    --c-traditions:#5AA7B6; --c-voice:#C492A2; --c-transition:#CFA336; --c-fun:#9E61A1; --c-studentlife:#56936E; --c-nontrans:#4A8FD6; --c-longterm:#CB7D45;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1E1E24; --ink:#F2F1EC; --mute:#A9ACB3; --rule:#3A3B42; --panel:#2A2B32;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--tape)}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:"Bricolage Grotesque",sans-serif;font-stretch:88%;font-variation-settings:"wdth" 88;letter-spacing:-.02em;line-height:1.02;margin:0}
+h1{font-weight:800;font-size:clamp(34px,6vw,60px)}
+h2{font-weight:800;font-size:clamp(28px,4vw,40px)}
+h3{font-weight:600;font-size:22px;letter-spacing:-.01em;line-height:1.15;margin:28px 0 8px}
+p{margin:0 0 14px;max-width:68ch}
+ul{padding-left:20px;max-width:68ch}
+li{margin:4px 0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+.wide{max-width:var(--wide);margin:0 auto;padding:0 16px}
+.muted{color:var(--mute)}
+.small{font-size:14px}
+button{font:inherit;color:inherit}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--rule)}
+.bar .in{max-width:var(--wide);margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.bar .name{font-weight:600}
+.bar .title{color:var(--mute)}
+.stages{display:flex;gap:4px;margin-left:0;list-style:none;padding:0;margin-top:0;margin-bottom:0}
+.stages .lab{font-size:13px;color:var(--mute);padding:6px 4px 6px 0}
+.stages button{background:none;border:0;padding:6px 8px;cursor:pointer;font-size:14px;color:var(--tape);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px;border-radius:4px}
+.stages button:hover,.stages button:focus-visible{color:var(--ink);background:var(--panel);text-decoration-color:var(--ink)}
+.stages button[aria-current="true"]{color:var(--ink);background:var(--panel);text-decoration:none;font-weight:600}
+.stages button b{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--tape);margin-right:6px;vertical-align:1px}
+.stages button[aria-current="true"] b{background:var(--ink)}
+.pdf{font-size:14px;text-decoration:none;border:1px solid var(--rule);padding:6px 10px;border-radius:4px;color:var(--ink)}
+:focus-visible{outline:3px solid var(--tape);outline-offset:2px}
+@media (max-width:760px){.masthead{padding:18px 0 10px}.masthead .pdf{font-size:13px;padding:5px 9px}.bar .in{padding:8px 12px;gap:8px}.stages{margin-left:0;width:100%;justify-content:space-between;gap:0;flex-wrap:wrap}.stages button{font-size:13px;padding:4px 2px}.stages button b{display:none}.stages .lab{display:none}}
+
+/* tape label */
+.tape{display:inline-block;background:var(--tape);color:var(--tape-ink);font-weight:600;font-size:13px;line-height:1.3;padding:4px 12px;transform:rotate(-1.5deg);margin-bottom:14px}
+
+/* hero */
+.hero{margin:0 0 56px;padding-top:28px}
+.hero .frame{background:#fff;padding:14px;border:1px solid var(--rule);max-width:var(--maxw);margin:0 auto}
+.hero .photo{aspect-ratio:16/9;max-height:52vh;width:100%;object-fit:cover}
+.hero .cap{font-size:13px;color:var(--mute);margin:10px 0 0;max-width:none}
+@media (max-width:640px){.hero{padding-top:20px}.hero .frame{padding:8px;margin:0 16px}}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero .frame{background:#F2F1EC}}
+.hero .band{background:var(--bg);padding:28px 0 0}
+.hero p.sub{font-size:20px;line-height:1.4;margin:16px 0 18px;max-width:40ch}
+.masthead{padding:28px 0 18px}
+.masthead .wide{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.masthead .pdf{flex:0 0 auto}
+.masthead .kicker{font-family:"Bricolage Grotesque",sans-serif;font-variation-settings:"wdth" 88;font-weight:600;font-size:clamp(22px,3vw,30px);line-height:1.15;letter-spacing:-.01em;margin:0;max-width:none}
+.masthead .kicker span{display:block;font-family:"Instrument Sans",sans-serif;font-weight:500;font-size:15px;letter-spacing:0;color:var(--mute);margin-bottom:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.chips li{border:1px solid var(--rule);padding:4px 10px;border-radius:4px;font-size:14px}
+
+/* context */
+details.context{background:var(--panel);border-left:5px solid var(--tape);padding:14px 18px;margin:0 0 48px}
+details.context .k{display:block;font-size:13px;font-weight:600;color:var(--tape);margin-bottom:4px}
+details.context summary{cursor:pointer;font-weight:500;list-style:none;display:flex;gap:10px;align-items:baseline}
+details.context summary .more{color:var(--tape);text-decoration:underline;text-underline-offset:3px;font-size:14px;white-space:nowrap;margin-left:auto}
+details.context[open] summary .more{display:none}
+details.context summary::-webkit-details-marker{display:none}
+details.context summary::before{content:"+";font-weight:600;color:var(--tape);width:14px}
+details.context[open] summary::before{content:"–"}
+details.context .body{padding:12px 0 4px 24px}
+@media (max-width:640px){details.context summary{flex-wrap:wrap}details.context summary .more{margin-left:24px}}
+details.context .body p{margin-bottom:10px}
+
+/* glance */
+.glance{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:0 0 56px}
+.glance div{background:var(--bg);padding:16px 18px}
+.glance b{display:block;font-weight:600;margin-bottom:6px}
+.glance p{margin:0;font-size:15.5px}
+@media (max-width:640px){.glance{grid-template-columns:1fr}}
+
+/* sections */
+section.stage{padding:28px 0 8px;margin-bottom:40px;scroll-margin-top:70px}
+section.stage>.wrap>h2{margin-bottom:18px}
+
+/* lens strip */
+.lens{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:28px 0 8px;list-style:none;padding:0}
+.lens li{background:var(--panel);padding:12px 13px;font-size:14px;line-height:1.4;border-top:4px solid}
+.lens li b{display:block;font-weight:600;margin-bottom:4px}
+.lens .ev{border-color:var(--l-evidence)} .lens .de{border-color:var(--l-decision)} .lens .mi{border-color:var(--l-mine)} .lens .sh{border-color:var(--l-ship)}
+@media (max-width:760px){.lens{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.lens{grid-template-columns:1fr}}
+
+/* ruler */
+.ruler{margin:8px 0 26px}
+.ruler svg{width:100%;height:56px;display:block;overflow:visible}
+.ruler text{font:13px "Instrument Sans",sans-serif;fill:var(--mute)}
+.ruler line{stroke:var(--ink);stroke-width:1.5}
+.ruler circle{fill:var(--tape)}
+
+/* interview cards */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.chip{border:1px solid var(--rule);background:none;padding:5px 10px;border-radius:999px;font-size:14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;list-style:none;padding:0;margin:0 0 10px}
+.card{border:1.5px solid var(--ink);padding:14px 16px;font-size:15px;line-height:1.45;background:var(--bg)}
+.card.hide{display:none}
+.card .who{font-weight:600;display:flex;justify-content:space-between;gap:10px}
+.card .who span{font-weight:400;color:var(--mute);font-size:14px}
+.card ul{padding-left:18px;margin:8px 0 0;font-size:14.5px;list-style:disc}
+.card .mine{display:inline-block;background:var(--l-mine);color:#fff;font-size:12px;padding:1px 7px;margin-top:8px}
+@media (max-width:640px){.cards{grid-template-columns:1fr}}
+
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0 8px}
+.quotes blockquote{margin:0;border-left:4px solid var(--tape);padding:4px 0 4px 14px;font-size:17px;line-height:1.4}
+.quotes cite{display:block;font-style:normal;color:var(--mute);font-size:14px;margin-top:6px}
+@media (max-width:640px){.quotes{grid-template-columns:1fr}}
+
+/* empathy map */
+.emap{display:grid;grid-template-columns:1fr;gap:18px;align-items:start;margin:24px 0 8px}
+.emap figure{margin:0}
+.emap figure button{display:block;border:0;padding:0;background:none;cursor:zoom-in;width:100%}
+.emap figcaption{font-size:14px;color:var(--mute);margin-top:6px}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13.5px;line-height:1.35}
+.quad div{background:var(--panel);padding:10px 11px}
+.quad b{display:block;margin-bottom:4px;font-weight:600}
+.quad span{display:block;padding:2px 4px;margin:1px -4px;border-radius:3px}
+.quad span.lit{background:var(--c-transition);color:#1E1E24}
+@media (max-width:520px){.quad{grid-template-columns:1fr}}
+
+/* personas */
+.personas{display:grid;grid-template-columns:1fr 1fr;gap:12px;list-style:none;padding:0;margin:0 0 6px}
+.persona{border:1.5px solid var(--ink);padding:14px 16px;background:var(--bg);cursor:pointer;text-align:left;font-size:15px;line-height:1.45;width:100%}
+.persona[aria-pressed="true"]{background:var(--panel);box-shadow:inset 0 0 0 2px var(--c-transition)}
+.persona .name{font-weight:600;display:flex;justify-content:space-between}
+.persona .name span{font-weight:400;color:var(--mute);font-size:14px}
+.persona .need{margin-top:6px}
+.persona .because{color:var(--mute);margin-top:4px;font-size:14.5px}
+@media (max-width:640px){.personas{grid-template-columns:1fr}}
+
+/* journey */
+.journey{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px}
+.journey div{background:var(--panel);padding:12px 13px;font-size:14px;line-height:1.4;border-top:4px solid var(--c-transition)}
+.journey b{display:block;font-weight:600;margin-bottom:4px}
+.journey i{display:block;color:var(--mute);font-style:normal;margin-top:6px;font-size:13.5px}
+@media (max-width:760px){.journey{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.journey{grid-template-columns:1fr}}
+
+/* HMW list */
+.hmw{list-style:none;padding:0;margin:0 0 20px;max-width:none}
+.hmw li{display:flex;gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--rule);font-size:15.5px}
+.hmw li::before{content:"";width:12px;height:12px;flex:0 0 12px;background:var(--sw);border-radius:2px;position:relative;top:1px}
+.hmw li span{color:var(--mute);margin-left:auto;font-size:14px;white-space:nowrap}
+
+/* explorer */
+.explorer{margin:20px 0 10px}
+.exp-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.exp-side{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media (max-width:640px){.exp-side{grid-template-columns:1fr}}
+.board{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;max-width:460px}
+.tile{aspect-ratio:1;border:0;padding:0;cursor:pointer;position:relative;background:var(--sw);border-radius:2px;transition:opacity .15s,transform .15s}
+.tile.dim{opacity:.18}
+.tile.ring{box-shadow:0 0 0 3px var(--bg),0 0 0 5.5px var(--ink)}
+.tile:hover,.tile:focus-visible{transform:scale(1.08);z-index:2}
+.tile small{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(0,0,0,.55);font-weight:600}
+.exp-side{font-size:14.5px;line-height:1.4}
+.exp-side .pick{min-height:92px;background:var(--panel);padding:12px 13px;margin-bottom:12px;border-left:5px solid var(--sw,var(--rule))}
+.exp-side .pick b{display:block;font-weight:600}
+.legend{list-style:none;padding:0;margin:0}
+.legend button{display:flex;width:100%;align-items:center;gap:10px;background:none;border:0;border-bottom:1px solid var(--rule);padding:7px 2px;cursor:pointer;text-align:left;font-size:14.5px}
+.legend button[aria-pressed="true"]{font-weight:600}
+.legend i{width:14px;height:14px;background:var(--sw);border-radius:2px;flex:0 0 14px}
+.legend em{margin-left:auto;font-style:normal;color:var(--mute)}
+.legend .bar{height:4px;background:var(--sw);margin-top:3px;border-radius:2px}
+.exp-list{margin:0;padding:0;list-style:none;font-size:14px;max-height:340px;overflow:auto;border-top:1px solid var(--rule)}
+.exp-list li{padding:6px 2px;border-bottom:1px solid var(--rule)}
+.exp-list li b{font-weight:600;margin-right:4px}
+
+/* chose table + tables */
+table{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0 18px}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--rule)}
+th{font-weight:600;background:var(--panel)}
+.tbl-wrap{overflow-x:auto}
+
+/* tabs */
+.tabs{display:flex;gap:4px;border-bottom:1.5px solid var(--ink);margin:16px 0 20px}
+.tabs button{background:none;border:0;padding:10px 14px;cursor:pointer;font-weight:500;color:var(--mute);border-bottom:3px solid transparent;margin-bottom:-1.5px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.panel[hidden]{display:none}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:12px 0 18px;counter-reset:step}
+.flow div{background:var(--panel);padding:10px 11px;font-size:13.5px;line-height:1.35;position:relative}
+.flow div::before{counter-increment:step;content:counter(step);display:inline-block;background:var(--ink);color:var(--bg);font-weight:600;font-size:12px;width:20px;height:20px;border-radius:50%;text-align:center;line-height:20px;margin-bottom:6px}
+.flow b{display:block;font-weight:600}
+@media (max-width:760px){.flow{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:420px){.flow{grid-template-columns:1fr 1fr}}
+
+.rules{columns:2;column-gap:28px;font-size:15px}
+@media (max-width:640px){.rules{columns:1}}
+
+.flyers{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0 6px}
+.flyers figure{margin:0}
+.flyers figure button{display:block;border:0;padding:0;background:none;cursor:zoom-in;width:100%}
+.flyers figcaption{font-size:14px;color:var(--mute);margin-top:6px}
+.before{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.before figure{margin:0;opacity:.85}
+.before figcaption{font-size:13px;color:var(--mute);margin-top:4px}
+@media (max-width:640px){.flyers,.before{grid-template-columns:1fr}}
+
+/* feedback */
+.fb{list-style:none;padding:0;margin:14px 0 6px;max-width:none}
+.fb details{border-bottom:1px solid var(--rule)}
+.fb summary{cursor:pointer;padding:12px 0;font-weight:500;list-style:none;display:flex;gap:12px;align-items:baseline}
+.fb summary::-webkit-details-marker{display:none}
+.fb summary::before{content:"+";color:var(--tape);font-weight:600;width:14px;flex:0 0 14px}
+.fb details[open] summary::before{content:"–"}
+.fb .ch{padding:0 0 14px 26px;color:var(--ink)}
+.fb .ch b{font-weight:600}
+.fb .tag{display:inline-block;background:var(--l-mine);color:#fff;font-size:12px;padding:1px 7px;margin-left:8px;vertical-align:1px}
+
+.vid{margin:14px 0 6px}
+.vid video{width:100%;height:auto;display:block;background:#000;border:1px solid var(--rule)}
+.vid figcaption,.vid-print figcaption{font-size:14px;color:var(--mute);margin-top:6px}
+.vid-print{display:none;margin:12px 0 6px}
+.vid-print img{max-height:60mm;width:auto}
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0 6px;list-style:none;padding:0}
+.metrics li{background:var(--panel);padding:14px 15px;font-size:15px;line-height:1.4;border-top:4px solid var(--l-ship)}
+.metrics b{display:block;font-weight:600;margin-bottom:4px}
+@media (max-width:640px){.metrics{grid-template-columns:1fr}}
+
+.ph{background:var(--c-transition);color:#1E1E24;font-weight:600;font-size:12px;padding:1px 6px;border-radius:2px;margin-right:6px;vertical-align:1px;white-space:nowrap}
+.phlist{border:1.5px solid var(--rule);padding:14px 18px;margin:0 0 40px;font-size:15px}
+.phlist b{font-weight:600}
+
+dl.gloss{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;font-size:15px;max-width:68ch}
+dl.gloss dt{font-weight:600}
+dl.gloss dd{margin:0}
+@media (max-width:520px){dl.gloss{grid-template-columns:1fr}dl.gloss dd{margin-bottom:8px}}
+
+footer{border-top:1px solid var(--rule);padding:28px 0 60px;margin-top:40px;font-size:15px}
+footer .row{display:flex;flex-wrap:wrap;gap:18px}
+
+dialog{border:0;padding:0;background:transparent;max-width:min(96vw,1400px)}
+dialog::backdrop{background:rgba(0,0,0,.8)}
+dialog img{max-height:92vh;width:auto;max-width:96vw}
+dialog button{position:fixed;top:12px;right:12px;background:#fff;color:#000;border:0;padding:8px 12px;cursor:pointer;font-weight:600}
+
+@media print{
+  @page{size:letter;margin:14mm 12mm}
+  .bar,.pdf,.filters,dialog,.tile small,.chip,#cardcount,.tabs,.exp-side .pick,.emap figcaption,.flyers figcaption .tap{display:none!important}
+  body{font-size:10.5pt;background:#fff;color:#1E1E24}
+  :root{--bg:#fff;--panel:#F0EFE8}
+  h2{font-size:24pt}
+  .stage{margin-bottom:18px;padding-top:10px}
+  .ui,.vid{display:none!important}
+  .vid-print{display:block;break-inside:avoid}
+  .tape{display:block;width:max-content;transform:none;break-after:avoid}
+  .tape+h2{break-before:avoid}
+  h2,h3,.panel-title{break-after:avoid}
+  .stage{padding-top:0}
+  .legend button span{flex:1}
+  .lens,.glance,.card,.persona,.journey,.flow,.metrics li,details,.quotes,table,.flyers,.before,.emap figure,.quad div,.hmw,.legend,.filters+.cards li{break-inside:avoid}
+  .masthead+.bar{display:none}
+  .ruler text{font-size:24px} .ruler circle{r:9}
+  .emap{grid-template-columns:1fr;gap:12px}
+  .emap figure img{max-height:110mm;width:100%;object-fit:cover}
+  .board,.exp-side .pick{display:none!important}
+  .legend{margin-top:6px} .legend button{padding:9px 2px;font-size:11pt} .legend .bar{height:7px;margin-top:5px}
+  .exp-grid{display:block}
+  footer{break-before:avoid;padding-top:14px}
+  #appendix h2{font-size:18pt}
+  .exp-grid{grid-template-columns:1fr}
+  .board{max-width:420px}
+  .exp-list{display:none}
+  #appendix{display:block!important;break-before:page}
+  #appendix ol{columns:3;column-gap:16px;font-size:8pt;line-height:1.3;padding-left:16px}
+  #appendix li{break-inside:avoid;margin:0 0 3px}
+  .flyers img,.before img{max-height:60mm;width:auto;margin:0 auto}
+  .hero .photo{max-height:70mm}
+  .cards{grid-template-columns:1fr 1fr}
+  .lens,.journey,.metrics{display:table;width:100%;table-layout:fixed;border-spacing:8px 0;margin-left:-8px;margin-right:-8px}
+  .lens li,.journey div,.metrics li{display:table-cell;vertical-align:top}
+  .flow{display:table;width:100%;table-layout:fixed;border-spacing:5px 0}
+  .flow div{display:table-cell;vertical-align:top}
+  .flow div::before{counter-increment:step}
+  .glance{margin-bottom:28px}
+  h3+.journey,h3+.flow,h3+.fb,h3+ul,h3+p,h3+.flyers,h3+.quotes{break-before:avoid}
+  .hero .photo{max-height:42vh}
+  .hero .frame{border:0;padding:0}
+  .panel[hidden]{display:block!important}
+  .panel-title{display:block!important;font:600 16pt "Bricolage Grotesque",sans-serif;margin:10px 0 6px}
+  details>summary::before{content:""!important}
+  .fb .ch{display:block}
+  a{color:inherit;text-decoration:none}
+  .context{break-inside:avoid}
+  .masthead{padding-top:0}
+}
+.panel-title{display:none}
+#appendix{display:none}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="wide">
+    <p class="kicker"><span>Leela Shankar</span>Alumni Connections, a Human-Centered Design Case Study</p>
+    <a class="pdf" href="Leela_Shankar_Alumni_Connections_Case_Study.pdf" download>Download PDF</a>
+  </div>
+</div>
+<div class="bar">
+  <div class="in">
+    <ul class="stages" aria-label="Jump to a stage">
+      <li class="lab">Jump to:</li>
+      <li><button onclick="go('brief')"><b></b>Brief</button></li>
+      <li><button onclick="go('empathize')"><b></b>Empathize</button></li>
+      <li><button onclick="go('define')"><b></b>Define</button></li>
+      <li><button onclick="go('ideate')"><b></b>Ideate</button></li>
+      <li><button onclick="go('prototype')"><b></b>Prototype</button></li>
+      <li><button onclick="go('test')"><b></b>Test</button></li>
+      <li><button onclick="go('launch')"><b></b>Takeaways</button></li>
+    </ul>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wide" style="padding:0">
+    <div class="frame">
+    <button class="hero-btn" style="border:0;padding:0;background:none;cursor:zoom-in;width:100%" onclick="zoom('img/empathy-map.jpg','Our empathy map on the Hive foam board, interviewee names blurred')" aria-label="Enlarge the empathy map photo">
+      <picture><source srcset="img/empathy-map.webp" type="image/webp"><img class="photo" src="img/empathy-map.jpg" alt="Foam board covered in colored sticky notes arranged in four quadrants labeled Say, Think, Do, and Feel, with blue tape dividing them and a label reading empathy map in the center" width="1600" height="1200"></picture>
+    </button>
+    <p class="cap">Our empathy map on the Hive foam board.<span class="ui"> Tap to enlarge.</span></p>
+    </div>
+  </div>
+  <div class="wrap band">
+    <span class="tape">What we found</span>
+    <h1>Being in the same room is not connection.</h1>
+    <p class="sub">What seven alumni, 100 ideas, and two prototypes taught our team about designing for students and alumni at The Claremont Colleges.</p>
+    <ul class="chips">
+      <li>My role: interviews, ideation, prototype, testing, video</li>
+      <li>Sept 25 to Oct 23, 2026</li>
+      <li>Team of 4</li>
+      <li>3 project partners</li>
+    </ul>
+  </div>
+</header>
+
+<div class="wrap">
+  <details class="context">
+    <summary><span><span class="k">About the class and where this project sits</span>Design Project 2 of 3, Human-Centered Design (ENGR 180), Harvey Mudd College, Fall 2026. Course in progress.</span><span class="more">Read more</span></summary>
+    <div class="body">
+      <p><b>The class.</b> A project-based course in human-centered design open to all five Claremont Colleges, taught at the Hive by Fred Leichter (Engineering, Harvey Mudd) and Dr. Shannon Randolph (Environmental Analysis, Pomona). Each design project runs the same five steps: empathy interviews and observation, reframing, ideation, prototyping, and iteration.</p>
+      <p><b>Where this sits.</b> DP1 was individual (Sept 11 to 24). DP2, this project, was a team of four (Sept 25 to Oct 22). DP3 is a team project running Oct 23 to December 2026.</p>
+      <p><b>The brief.</b> "Design for meaningful alumni connections at The Claremont Colleges." The Claremont Colleges, called the 5Cs on campus, are five undergraduate colleges on one shared campus: Pomona, Pitzer, Scripps, Claremont McKenna, and Harvey Mudd. Partners: 5C Alumni Boards, Pomona College Alumni &amp; Family Engagement Office, and the Associated Students of Pomona College.</p>
+      <p><b>Status.</b> This page shows DP2 as completed and graded. DP3 is in progress through December 2026, for The Salvation Army: how service animals could help people dealing with addiction and homelessness. This page will be updated when it is complete.</p>
+      <p><b>Team of 4.</b> Where this page says "I," it is my work. Where it says "we," it is the team's.</p>
+    </div>
+  </details>
+
+  <div class="glance">
+    <div><b>Problem</b><p>Alumni engagement surveys from 2022 to 2024 put meaningful alumni engagement at about 19 to 20 percent (cited via US News in the project brief). Students feel distant from alumni, and existing platforms feel transactional.</p></div>
+    <div><b>My role</b><p>I took part in every stage with my team. I brainstormed about 30 of our 100 ideas, conducted 2 of 7 interviews, helped create the 5C Family Network prototype, gathered feedback on it from 4 people, helped build the revised flyer, and edited our video.</p></div>
+    <div><b>What we made</b><p>Two prototypes: the 5C Alumni Family Network (a program, tested with a flyer) and a Color War-style tournament for students and alumni.</p></div>
+    <div><b>Biggest lesson</b><p>Putting students and alumni in the same space does not create connection by itself. The connection has to be set up with structure, clear roles, and a way for everyone to contribute.</p></div>
+  </div>
+</div>
+
+<!-- BRIEF -->
+<section class="stage" id="brief">
+  <div class="wrap">
+    <span class="tape">The brief</span>
+    <h2>Alumni who want to help, students who do not know how to ask.</h2>
+    <p>The Claremont Colleges (the 5Cs) are five undergraduate colleges on a shared campus in Claremont, California. The brief described alumni who are excited to help but do not know where to start, and students who feel distant from alumni because existing connection platforms do not feel human. Asking for career advice can feel transactional, especially when students worry about asking for help at all.</p>
+    <p>Two scoping decisions came first. We chose to connect students with alumni, not alumni with other alumni. And we chose to avoid the career-focused style that platforms like Sagehen Connect often offer.</p>
+    <ul class="lens">
+      <li class="ev"><b>Evidence</b>Brief cites 2022 to 2024 engagement surveys: about 19 to 20 percent of alumni engage meaningfully.</li>
+      <li class="de"><b>Decision</b>Students with alumni, not alumni with alumni. Non-career by design.</li>
+      <li class="mi"><b>My part</b>Part of the four-person scoping conversation in week one.</li>
+      <li class="sh"><b>If shipped</b>Any solution has to work for the 80 percent who go silent, not the 20 percent already engaged.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- EMPATHIZE -->
+<section class="stage" id="empathize">
+  <div class="wrap">
+    <span class="tape">Empathize</span>
+    <h2>Seven alumni, forty-three years apart.</h2>
+    <p>As a team we interviewed 7 alumni, from the Class of 1983 to the Class of 2026. Some live in Claremont. Others live in Bali and Berlin. I conducted 2 of the interviews. We also had 2 other conversations about how Pomona currently handles student and alumni relations. Interviewees are identified by college and class year only.</p>
+
+    <div class="ruler" aria-label="Interviewees by class year, 1983 to 2026">
+      <svg viewBox="0 0 1000 56" role="img" aria-labelledby="rulerT"><title id="rulerT">Seven interviewees placed on a timeline from 1983 to 2026: one in 1983, one in 1995, two in 2024, two in 2025, one in 2026.</title>
+        <line x1="0" y1="20" x2="1000" y2="20"/>
+        <circle cx="0" cy="20" r="7"/><circle cx="279" cy="20" r="7"/>
+        <circle cx="946" cy="14" r="7"/><circle cx="946" cy="30" r="7"/>
+        <circle cx="970" cy="14" r="7"/><circle cx="970" cy="30" r="7"/>
+        <circle cx="1000" cy="20" r="7"/>
+        <text x="0" y="50">1983</text><text x="279" y="50" text-anchor="middle">1995</text><text x="930" y="50" text-anchor="end">2024</text><text x="1000" y="50" text-anchor="end">2026</text>
+      </svg>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter interviews">
+      <button class="chip" aria-pressed="true" data-f="all">All 7</button>
+      <button class="chip" aria-pressed="false" data-f="claremont">Still in Claremont</button>
+      <button class="chip" aria-pressed="false" data-f="away">Far away</button>
+      <button class="chip" aria-pressed="false" data-f="before2000">Classes of the '80s and '90s</button>
+      <button class="chip" aria-pressed="false" data-f="mine">My interviews</button>
+    </div>
+    <ul class="cards" id="cards">
+      <li class="card" data-tags="away before2000"><div class="who">Pomona '83 <span>Bali</span></div><ul><li>Retired. Family history of attending Pomona.</li><li>Spoke to students at alumni weekend and loved it.</li><li>Conscious that "my perspective may be dated."</li><li>Misses live music at the Smudge Pot.</li></ul></li>
+      <li class="card" data-tags="before2000"><div class="who">Pomona '95 <span>Location not stated</span></div><ul><li>Fond memories of traditions that no longer exist, like Screw Your Roommate.</li><li>Excited by the idea of reviving lost traditions.</li></ul></li>
+      <li class="card" data-tags=""><div class="who">Pomona '24 <span>Location not stated</span></div><ul><li>Tennis team network supported her transition out of college.</li><li>Wants to "pay it forward."</li><li>First interactions should feel casual and human, not transactional.</li></ul></li>
+      <li class="card" data-tags="away"><div class="who">Scripps '24 <span>Berlin</span></div><ul><li>Friendships formed in college keep her connected.</li><li>Two Scripps alumni she did not know well picked her up from the airport when she moved. A close friendship followed.</li></ul></li>
+      <li class="card" data-tags="claremont"><div class="who">Pomona '25 <span>Claremont</span></div><ul><li>Works at Pomona now; close in age to students.</li><li>"Strong feeling of support" from the alumni network.</li><li>The biggest thing people miss is the people.</li></ul></li>
+      <li class="card" data-tags="claremont mine"><div class="who">Pitzer '25 <span>Claremont</span></div><ul><li>Research technician nearby; easy to come back for now.</li><li>Enjoys less structured events that mix alumni and students.</li><li>Professional events do not allow casual connection.</li></ul><span class="mine">My interview</span></li>
+      <li class="card" data-tags="away"><div class="who">Pomona '26 <span>Grad school, New England</span></div><ul><li>Felt detached from Pomona as soon as he graduated, except for close friends.</li><li>Isolated in his new city; wants informal ways to connect with alumni and students.</li></ul></li>
+    </ul>
+    <p class="small muted" id="cardcount">Showing 7 of 7.</p>
+
+    <h3>What we heard</h3>
+    <ul>
+      <li><b>Friends bring people back.</b> Alumni from Pomona '25 and Scripps '24 said the friendships formed in college keep them connected.</li>
+      <li><b>Graduation feels like losing a safety net.</b> Alumni from Pomona '26 and Pomona '24 described going from a high-support campus to feeling alone.</li>
+      <li><b>Distance changes everything.</b> Alumni still in Claremont find it much easier to stay connected than alumni in Bali or Berlin.</li>
+      <li><b>Casual beats formal.</b> First interactions should feel casual and human, not transactional.</li>
+      <li><b>Lost traditions matter.</b> Alumni from Pomona '95 and Pomona '83 both talked about traditions that no longer exist.</li>
+      <li><b>Alumni worry their advice is outdated.</b></li>
+    </ul>
+
+    <div class="quotes">
+      <blockquote>"My perspective may be dated."<cite>Pomona '83</cite></blockquote>
+      <blockquote>"I would totally join."<cite>Flyer tester, on the Family Network</cite></blockquote>
+      <blockquote>She wants to "pay it forward."<cite>Pomona '24, on her tennis team network</cite></blockquote>
+      <blockquote>Fun, informal, and "very college."<cite>Color War participants</cite></blockquote>
+    </div>
+
+    <h3>Making sense of it</h3>
+    <p>We built an empathy map to separate what interviewees said and did from what they thought and felt. This showed us which parts of our notes were explicit and which were our own interpretation. The transcription below is from the board; sticky colors on the board are interviewees.<span class="ui"> Pick a persona in the next section to see which notes it grew from.</span></p>
+    </div><div class="wrap"><div class="emap">
+      <figure>
+        <button onclick="zoom('img/empathy-map.jpg','Our empathy map, names blurred')"><picture><source srcset="img/empathy-map.webp" type="image/webp"><img src="img/empathy-map.jpg" alt="Close view of the empathy map board" width="1600" height="1200" loading="lazy"></picture></button>
+        <figcaption>Our empathy map, names blurred.<span class="ui"> Tap to enlarge.</span></figcaption>
+      </figure>
+      <div class="quad" id="quad">
+        <div><b>Say</b><span data-p="p3">Wants to stay connected to PZ</span><span>Friendly interactions over pure job talk</span><span>Conversations for career stuff feel transactional</span><span data-p="p2">"My perspective may be dated"</span><span>5C community is important</span><span>Lack of traditions going on at 5C</span><span>Strong feeling of support</span><span>People over the actual campus</span></div>
+        <div><b>Think</b><span>Pomona has a strong alumni network</span><span data-p="p2">Students would benefit from life lessons, not job talk</span><span>Pomona students put too much pressure on themselves</span><span>Food = community</span><span data-p="p3">Social events bring more real connection than professional ones</span><span>Alumni prioritize seeing college friends over current students</span><span data-p="p4">Friendships become stronger post grad</span></div>
+        <div><b>Do</b><span>Attends alumni weekends</span><span data-p="p4">Remains close friends with 5C alumni</span><span>Works at the Draper Center</span><span>Always interacts with students</span><span>Played sports and was involved in clubs</span><span data-p="p3">Research technician, located in Claremont</span><span>Worked for and with many colleges</span><span>Was engaged with Oldenborg and the Smudge Pot</span></div>
+        <div><b>Feel</b><span data-p="p1">Misses her college friends</span><span data-p="p1 p4">Isolated in life post-campus</span><span data-p="p1">Sense of uncertainty, no safety net</span><span data-p="p1">Uncertainty after graduation</span><span data-p="p2">Self-conscious of age and knowledge</span><span data-p="p1">Grateful for support she received from other alumni</span><span data-p="p4">Misses her friends most of all</span></div>
+      </div>
+    </div></div><div class="wrap">
+
+    <ul class="lens">
+      <li class="ev"><b>Evidence</b>7 interviews, classes of '83 to '26, plus 2 background conversations. Empathy map with four quadrants.</li>
+      <li class="de"><b>Decision</b>Interview across the whole span of class years and distance, not only recent grads.</li>
+      <li class="mi"><b>My part</b>2 of the 7 interviews, including Pitzer '25. Shared note-taking on the board.</li>
+      <li class="sh"><b>If shipped</b>The Feel quadrant is where the needs came from. Any follow-up research should start by checking those feelings with a wider group.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- DEFINE -->
+<section class="stage" id="define">
+  <div class="wrap">
+    <span class="tape">Define</span>
+    <h2>Four personas, written as points of view.</h2>
+    <p>We wrote four points of view from our interviews in the d.school format: a user, what they need, and why. We focused on the first two for ideation.<span class="ui"> Select one to see the empathy-map notes it grew from.</span></p>
+    <ul class="personas">
+      <li><button class="persona" aria-pressed="false" data-p="p1"><div class="name">Recent grad, new in DC <span>Persona 1</span></div><div class="need">needs to feel supported through structured relationships, events, and mentorship</div><div class="because">because she did not realize how much support she would need after graduating.</div></button></li>
+      <li><button class="persona" aria-pressed="false" data-p="p2"><div class="name">Retired alum who wants to advise <span>Persona 2</span></div><div class="need">needs to feel her advice is useful and wanted by 5C students, and to break generational perceptions of entering the job market today</div><div class="because">because she is conscious of her age and feels a lot has changed in career development since she graduated in 1983.</div></button></li>
+      <li><button class="persona" aria-pressed="false" data-p="p3"><div class="name">24-year-old Pitzer alum in Claremont <span>Persona 3</span></div><div class="need">needs a space to keep her college relationships over time and give back to Pitzer</div><div class="because">because she wants separate spaces for time with old classmates and time as a mentor to current students.</div></button></li>
+      <li><button class="persona" aria-pressed="false" data-p="p4"><div class="name">Recent grad in grad school in New England <span>Persona 4</span></div><div class="need">needs to feel included and connected to Claremont through informal, fun relationships</div><div class="because">because recent gradhood can be awkward, and alumni decide how much of undergrad to carry with them.</div></button></li>
+    </ul>
+    <p class="small muted ui">Click a persona to light up its notes on the empathy map above.</p>
+
+    <h3>Journey map: persona 1</h3>
+    <p class="small muted">Built after the class from the interview notes. Not a class deliverable.</p>
+    <div class="journey">
+      <div><b>Senior year</b>High-support campus. Friends in the same dorm, professors down the hall, a team or club every week.<i>Feels: held</i></div>
+      <div><b>Graduation</b>"Going from a high-support campus to feeling alone." The safety net goes away in a day.<i>Feels: unprepared</i></div>
+      <div><b>First months away</b>New city, new job or program. Escapes to see college friends on weekends. Does not know how to reach alumni, or whether she should.<i>Feels: isolated, uncertain</i></div>
+      <div><b>First reconnection</b>A teammate's network, or two alumni at an airport. Someone who was once in her position reaches out first.<i>Feels: grateful, wants to pay it forward</i></div>
+    </div>
+    <p class="small muted">The opportunity is the gap between stages two and four: nothing in the current system makes the first reconnection happen on purpose.</p>
+
+    <ul class="lens">
+      <li class="ev"><b>Evidence</b>Four POVs from seven interviews. Persona 1 draws on Pomona '24, Pomona '26, and Scripps '24.</li>
+      <li class="de"><b>Decision</b>Design for personas 1 and 2 (the brief asked for one). The Family Network turned out to serve both at once.</li>
+      <li class="mi"><b>My part</b>Co-wrote the POVs in class; built the journey map afterward.</li>
+      <li class="sh"><b>If shipped</b>The first reconnection is the moment to design for. Measure whether it happens, and when.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- IDEATE -->
+<section class="stage" id="ideate">
+  <div class="wrap">
+    <div>
+      <span class="tape">Ideate</span>
+      <h2>100 ideas, 7 categories, 2 picks.</h2>
+      <p>We started with a "benefit baiting" exercise: list the benefits a product connecting students and alumni could offer, then think of existing products that share those benefits. Connection led us to families, video calls, and shared interests. From there we built a list of 100 ideas and sorted every one into a category. Each category answers one of our seven How Might We questions.</p>
+      <ul class="hmw" id="hmw"></ul>
+    </div>
+
+    <div class="explorer">
+      <div class="exp-grid">
+        <div>
+          <div class="board" id="board" role="list" aria-label="100 ideas as colored tiles"></div>
+          <p class="small muted ui" style="margin-top:10px">Each tile is one idea. Hover or tap for the text. The ringed tile is idea 17, which became the Family Network. Ideas 16, 19, 56, and 98 are the game and competition ideas the Color War drew on.</p>
+        </div>
+        <aside class="exp-side">
+          <ul class="legend" id="legend"></ul>
+          <div>
+            <div class="pick" id="pick"><b>Pick a tile or a category</b><span class="muted">Idea text appears here.</span></div>
+            <ul class="exp-list" id="explist" aria-live="polite"></ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div>
+      <h3>How we chose</h3>
+      <p>We did not score the list. We ran mini role-play tests of our strongest ideas with other groups in the class, acting out how each one would work, and picked the two that we liked the most and that our classmates responded to best in that activity. We decided which ideas were the strongest and prototyped those.</p>
+      <p>What the two picks had in common, looking back: the Family Network (idea 17) served all four personas, especially the first two, so it was the idea with the widest reach. The Color War tournament came from our biggest group of ideas, the fun-together games, so it was the idea that tested our most common instinct. Both could be put in front of real people within a week, one with a flyer and one with a staged event, and neither leads with careers.</p>
+      <ul class="lens">
+        <li class="ev"><b>Evidence</b>100 ideas, categorized. 7 HMW questions. The largest category was games and competitions (22).</li>
+        <li class="de"><b>Decision</b>Role-play the strongest ideas with classmates, then prototype the two that held up. A program, not an app.</li>
+        <li class="mi"><b>My part</b>About 30 of the 100 ideas.</li>
+        <li class="sh"><b>If shipped</b>The other 98 ideas are a backlog. Traditions (9) and alumni voice (10) are untested and cheap to try.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROTOTYPE -->
+<section class="stage" id="prototype">
+  <div class="wrap">
+    <span class="tape">Prototype</span>
+    <h2>Two low-resolution prototypes.</h2>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" aria-controls="tab-fn" id="t-fn" onclick="tab('fn')">5C Alumni Family Network</button>
+      <button role="tab" aria-selected="false" aria-controls="tab-cw" id="t-cw" onclick="tab('cw')">Color War tournament</button>
+    </div>
+
+    <div class="panel" id="tab-fn" role="tabpanel" aria-labelledby="t-fn"><span class="panel-title">Prototype 1: 5C Alumni Family Network</span>
+      <p>A program where students and alumni are placed in a "family" of 4 to 6 people and stay in it after graduation. We made a trifold flyer to explain it and used the flyer to collect feedback. It is a prototype for testing, not a final product.</p>
+      <h3>How joining works</h3>
+      <div class="flow">
+        <div><b>Orientation</b>Students opt in and take a short matching test.</div>
+        <div><b>Matching</b>Shared non-career interests, hobbies, personality traits, hometown.</div>
+        <div><b>Your family</b>One underclassman, one upperclassman, one recent alum, one older alum.</div>
+        <div><b>First meeting</b>The program sets up the first meeting; families then meet on their own.</div>
+        <div><b>Graduation</b>You stay in your family and move from receiving advice to giving it.</div>
+        <div><b>Over time</b>Subsidized meals and activities; a way to switch families if it is not working.</div>
+      </div>
+      <h3>Program rules</h3>
+      <ul class="rules">
+        <li>Opt-in, at orientation.</li>
+        <li>Families of 4 to 6, spanning four stages of college life.</li>
+        <li>Matched on non-career interests, hobbies, personality, and hometown.</li>
+        <li>Careers and colleges are mixed on purpose, to keep it a non-networking space and strengthen ties between the five colleges.</li>
+        <li>Subsidized shared meals and activities.</li>
+        <li>A platform for sharing updates and creations.</li>
+      </ul>
+      <h3>The flyer, revised version</h3>
+      <div class="flyers">
+        <figure><button onclick="zoom('img/flyer-v2-outside.jpg','Revised flyer, outside panels')"><picture><source srcset="img/flyer-v2-outside.webp" type="image/webp"><img src="img/flyer-v2-outside.jpg" alt="Revised trifold flyer, outside panels: cover reads 5C Alumni Family Networks with a tree illustration; a panel asks Questions or Feedback; a panel titled I'm in a family, what now, with a photo of alumni at a campus event" loading="lazy" width="1600" height="1236"></picture></button><figcaption>Outside panels, revised.<span class="ui"> Tap to enlarge.</span></figcaption></figure>
+        <figure><button onclick="zoom('img/flyer-v2-inside.jpg','Revised flyer, inside panels')"><picture><source srcset="img/flyer-v2-inside.webp" type="image/webp"><img src="img/flyer-v2-inside.jpg" alt="Revised trifold flyer, inside panels: How does it work in four steps, a photo of students and alumni with the Pomona mascot, How do we form families, and Matching criteria" loading="lazy" width="1600" height="1236"></picture></button><figcaption>Inside panels, revised.<span class="ui"> Tap to enlarge.</span></figcaption></figure>
+      </div>
+      <div class="before">
+        <figure><picture><source srcset="img/flyer-v1-outside.webp" type="image/webp"><img src="img/flyer-v1-outside.jpg" alt="First version of the flyer, outside panels, with a photo of a shared meal" loading="lazy" width="1600" height="1236"></picture><figcaption>First version, outside. Replaced after testing.</figcaption></figure>
+        <figure><picture><source srcset="img/flyer-v1-inside.webp" type="image/webp"><img src="img/flyer-v1-inside.jpg" alt="First version of the flyer, inside panels, with a photo of people on a lawn" loading="lazy" width="1600" height="1236"></picture><figcaption>First version, inside. Replaced after testing.</figcaption></figure>
+      </div>
+      <p class="small muted" style="margin-top:10px">Low-resolution prototype for concept testing, built as a trifold in Canva. I helped create the first version and the revised version.</p>
+    </div>
+
+    <div class="panel" id="tab-cw" role="tabpanel" aria-labelledby="t-cw" hidden><span class="panel-title">Prototype 2: Color War tournament</span>
+      <p>An event where seniors, 10-year alumni, and current MBA students play classic college games on mixed teams. We staged it with about 10 participants to see what mixing people in the same space actually does.</p>
+      <h3>What we were testing</h3>
+      <p>Whether shared, informal fun is enough on its own to make students and alumni connect. This was the largest category in our 100 ideas, so it was the hypothesis most worth checking.</p>
+    </div>
+
+    <ul class="lens">
+      <li class="ev"><b>Evidence</b>Two prototypes people could react to: a flyer in hand and a staged event.</li>
+      <li class="de"><b>Decision</b>Test the join path and the rules, not the visual design. The flyer is deliberately rough.</li>
+      <li class="mi"><b>My part</b>Helped create both versions of the flyer.</li>
+      <li class="sh"><b>If shipped</b>The join path (opt-in, test, match, first meeting) is the part to build first and measure.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TEST -->
+<section class="stage" id="test">
+  <div class="wrap">
+    <span class="tape">Test and iterate</span>
+    <h2>What ten people told us, and what we changed.</h2>
+    <h3>Family Network flyer: 10 students and alumni gave feedback</h3>
+    <p>I gathered feedback from 4 of the 10, then used it to help build the revised flyer.<span class="ui"> Open a row to see the change.</span></p>
+    <ul class="fb">
+      <li><details><summary>Most people thought joining should be opt-in. We had planned to sign all first-years up automatically, with an option to opt out later.<span class="tag">I collected 4 of the 10</span></summary><div class="ch"><b>What we changed:</b> the program became opt-in. This was the change that mattered most; see the reflection below.</div></details></li>
+      <li><details><summary>Some pictures felt impersonal and did not show what the program is.</summary><div class="ch"><b>What we changed:</b> replaced the lawn and food photos with photos of alumni and families at campus events.</div></details></li>
+      <li><details><summary>The program needed more clarity in places.</summary><div class="ch"><b>What we changed:</b> rewrote the "I'm in a family. What now?" section to explain that the program helps set up first meetings and then encourages families to meet on their own. Added how to switch families.</div></details></li>
+      <li><details><summary>The flyer needed proofreading.</summary><div class="ch"><b>What we changed:</b> fixed the text in the revised version.</div></details></li>
+      <li><details><summary>The name can make it sound like something for parents or families of students.</summary><div class="ch"><b>What we decided:</b> kept "5C Alumni Family Networks" for this round, since it is an early concept for testing and not a final product. Renaming is the first thing to do if it goes further.</div></details></li>
+      <li><details><summary>Positive reactions from both students and alumni, who were interested in joining if it ever launches.</summary><div class="ch"><b>One response:</b> "I would totally join."</div></details></li>
+    </ul>
+
+    <h3>Color War tournament: about 10 people took part</h3>
+    <ul>
+      <li><b>What worked.</b> Participants liked that it felt fun, informal, and "very college." Many liked meeting people from other class years who shared common experiences.</li>
+      <li><b>What did not.</b> With little structure, some groups took over the activities while others felt sidelined or unsure how to join. Students and alumni also drifted back to their own groups.</li>
+      <li><b>What we would change.</b> More structured teams, rotations, and activities designed to mix people on purpose.</li>
+    </ul>
+
+    <p class="small muted">We did not run a survey. With more time, the first thing I would add is a five-question survey to the ten flyer testers to size the opt-in preference rather than infer it from conversations.</p>
+
+    <h3>The video</h3>
+    <p>We told our user's story in a 2-minute video built from a "storyspine," focusing on the older alum persona with elements of the recent grad persona, to show how the Family Network could connect two people like them. I edited the video. It is drawn, not filmed, so no interviewee appears in it.</p>
+    <figure class="vid">
+      <video controls preload="none" poster="video/dp2-poster.jpg" width="1280" height="720" playsinline>
+        <source src="video/dp2-video.mp4" type="video/mp4">
+        Your browser does not play this video. <a href="video/dp2-video.mp4">Download it</a> instead.
+      </video>
+      <figcaption>Team Ctrl, Design Project 2 video, 1 min 55 s.</figcaption>
+    </figure>
+    <figure class="vid-print"><img src="video/dp2-poster.jpg" alt="A frame from the video: a drawing of an older alum with long grey hair, smiling, in a blue cardigan" width="1280" height="720" loading="lazy"><figcaption>A frame from the 2-minute video. The video plays on the web version of this case study.</figcaption></figure>
+
+    <ul class="lens">
+      <li class="ev"><b>Evidence</b>10 flyer testers, 6 recorded themes, 5 changes. About 10 Color War participants, observed.</li>
+      <li class="de"><b>Decision</b>Reverse the enrollment model. Keep the name for now and flag it. Add structure to the event.</li>
+      <li class="mi"><b>My part</b>4 of the 10 flyer conversations; helped build v2; edited the video above.</li>
+      <li class="sh"><b>If shipped</b>Measure engagement per network, not only networks created, so an opt-in program is judged on quality.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- IF LAUNCHED -->
+<section class="stage" id="launch">
+  <div class="wrap">
+    <span class="tape">If this launched</span>
+    <h2>How we would know it worked.</h2>
+    <p class="small muted">A proposal, not a result. Nothing here has been measured.</p>
+    <p>The system has three kinds of users: the alumni office manager who runs it, alumni, and current students. These are the measures I would set up for the office in the first year.</p>
+    <ul class="metrics">
+      <li><b>Family networks created per quarter</b>The count the office would report, and the number an opt-everyone policy would inflate. On its own it says nothing about quality.</li>
+      <li><b>Engagement rate per network</b>Interactions per family, quarterly and annually. Starting goal: at least two interactions per family per quarter. This is the measure that catches networks that exist on paper only.</li>
+      <li><b>Members per network</b>The prototype requires a minimum of 4. The right minimum and maximum for engagement can be A/B tested; too many members may make a family less personal.</li>
+      <li><b>Who is in the engaged networks</b>Track member attributes the office already holds (gender, age, location, student year, major, job title). Once there is enough data, compare high-engagement and low-engagement networks to see what they have in common.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="stage" id="reflection">
+  <div class="wrap">
+    <span class="tape">What I took away</span>
+    <h2>We wanted a big network. We could not force people into it.</h2>
+    <p>A big lesson for me came in the iteration step. When we first designed the 5C Family Network, we planned to sign all first-years up automatically at orientation, and they could opt out later if they did not like it. We thought this would build a strong foundation, since most of each graduating class would already be in the network. When we tested the idea, most people thought it should be opt-in. I realized we had to prioritize the user and not put our goals for the product above them. We want a large network of 5C "families," but we cannot force people to be part of it.</p>
+    <p>This connects to what we talked about in class: it is hard to keep your own wishes and needs out of the design process, and it was especially hard here because we were designing for ourselves in a way. Finding a balance between what is best for your user and your own idea of what the product should be is important.</p>
+    <p>The rule I take from it is to balance the needs of the users with those of the alumni office. My hypothesis: opting everyone in would raise the office's count of family networks created, but most of those networks would have low or zero engagement. Alumni and students who are motivated enough to choose to join will form fewer networks, and better ones.</p>
+  </div>
+</section>
+
+<section class="stage" id="methods">
+  <div class="wrap">
+    <span class="tape">Methods</span>
+    <h2>What each method means.</h2>
+    <dl class="gloss">
+      <dt>Empathy interview</dt><dd>A long, open conversation that digs for stories and feelings rather than opinions.</dd>
+      <dt>Empathy map</dt><dd>Four quadrants (say, do, think, feel) to separate what we observed from what we inferred.</dd>
+      <dt>Point of view</dt><dd>A one-line persona: a user, what they need, and the insight behind it.</dd>
+      <dt>How might we</dt><dd>A question that turns an insight into a prompt for ideas.</dd>
+      <dt>Benefit baiting</dt><dd>List the benefits a solution should give, name existing things that give them, and borrow from those.</dd>
+      <dt>100 ideas</dt><dd>Deliberate over-generation, wild to realistic, before choosing.</dd>
+      <dt>Low-resolution prototype</dt><dd>Something cheap and fast (a flyer, a staged event) built to test a concept, not to ship.</dd>
+      <dt>Concept test</dt><dd>Asking people whether they would want something, as opposed to whether they can use it.</dd>
+      <dt>Storyspine</dt><dd>A story scaffold ("once upon a time, every day, until one day") used to script the video.</dd>
+      <dt>Journey map</dt><dd>One persona's experience over time: stages, actions, feelings, and the gap worth designing for.</dd>
+    </dl>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="phlist">
+    <b>Sources.</b> Every fact and number on this page traces to the team's interview notes, design write-up, flyer, 100-ideas list, or the class project brief, or is my own account of my part in the work.
+  </div>
+</div>
+
+<section id="appendix" class="wrap">
+  <span class="tape">Appendix</span>
+  <h2>All 100 ideas, by number.</h2>
+  <p class="small muted">Category in parentheses. Idea 17 became the Family Network.</p>
+  <ol id="appendix-list"></ol>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <span><b>Leela Shankar</b></span>
+      <a href="mailto:leelap.shankar@gmail.com">leelap.shankar@gmail.com</a>
+      <a href="https://www.linkedin.com/in/leelashankar1" rel="noopener">linkedin.com/in/leelashankar1</a>
+      <a class="ui" href="Leela_Shankar_Alumni_Connections_Case_Study.pdf" download>Download the PDF</a>
+    </div>
+    <p class="small muted" style="margin-top:14px">Human-Centered Design (ENGR 180), Harvey Mudd College, Fall 2026. Team Ctrl: Cate, Kitty, Leela, Zena. Project partners: 5C Alumni Boards, Pomona College Alumni &amp; Family Engagement Office, ASPC.</p>
+  </div>
+</footer>
+
+<dialog id="dlg"><button onclick="document.getElementById('dlg').close()">Close</button><img id="dlgimg" alt=""></dialog>
+
+<script>
+const CATS={
+  traditions:{name:"Traditions and eras",hmw:"How might we use alumni events to introduce current students to old school traditions?"},
+  voice:{name:"Alumni voice and advice",hmw:"How might we make alumni feel like their voices are valuable to students?"},
+  transition:{name:"Transition support and matching",hmw:"How might we make the transition between life as a student and life as an alumna easier?"},
+  fun:{name:"Fun together: games, competitions, making",hmw:"How might we create opportunities for students and alumni to have fun together?"},
+  studentlife:{name:"Alumni inside student life",hmw:"How might we include alumni in more student-led events?"},
+  nontrans:{name:"Shared interests, non-transactional",hmw:"How might we keep students and alumni engaged without transactional relationships?"},
+  longterm:{name:"Ongoing exchange, long-term ties",hmw:"How might we create alumni events that foster long-term relationships between alumni and current students?"}
+};
+const IDEAS=[{"n":1,"t":"A pen-pal style \"week in the life\" exchange where students and alums swap casual video diaries or photo zines (video, prose/writing, slideshow w/images, podcast, etc.) in a creative way they see fit instead of formal job shadowing.","c":"longterm"},{"n":2,"t":"Micro-interest affinity circles for poetry, book discussions, or cooking that pair current seniors with alums to keep creative outlets and campus ties alive.","c":"nontrans"},{"n":3,"t":"Reverse-mentorship workshops where students teach alums about Gen Z slang, funny student debates, and current student culture over Zoom. (passionate short slideshow presentations, also practice for public speaking)","c":"studentlife"},{"n":4,"t":"An automated hometown/city matching system for alums and students in the same city who share non-career hobbies, backed by stipends and an IG snapshot account. (also for when students/alums travel/move, they can connect with each other more easily)","c":"transition"},{"n":5,"t":"Some sort of app/social media platform that bridges students and alumni more casually and easily","c":"nontrans"},{"n":6,"t":"A seasonal shared zine or journal where students & alums drop art, life updates, random thoughts, and answers to nostalgic prompts across time & space.","c":"longterm"},{"n":7,"t":"Partnering alums with students to fund & bring back neglected/forgotten campus traditions/events.","c":"studentlife"},{"n":8,"t":"7C micro-hackathon bringing students and alums from all the colleges together into mixed teams to tackle local civic or climate issues.","c":"fun"},{"n":9,"t":"A coffee subsidy program that covers the tab for a first chats between students and alums.","c":"transition"},{"n":10,"t":"Some sort of regional scavenger hunt (for example; sagehen, or campus-representative stuffed animal hidden in every State or each major city) and offering clues, so that students & alumni can collaborate to find them","c":"longterm"},{"n":11,"t":"Open-mic night for students and alums - in Doms Lounge/Smudge Pot","c":"traditions"},{"n":12,"t":"Alumni/student creation/art exchange","c":"fun"},{"n":13,"t":"Event where students are given information about alums but not their name (graduation year, occupation, interests, fun fact, etc) they have to go around and meet alums to try to find who they’ve been assigned","c":"longterm"},{"n":14,"t":"Love is Blind style matching show for students and alumni","c":"studentlife"},{"n":15,"t":"Amazing race for students to find different alumni around the world","c":"studentlife"},{"n":16,"t":"Annual event/festival for students and alumni to compete in loads of different games","c":"nontrans"},{"n":17,"t":"Alumni family networks (e.g. before graduation you get an “auntie” who is there for mentorship/advice)","c":"transition"},{"n":18,"t":"Weekly alumni/student video calls","c":"longterm"},{"n":19,"t":"Alumni vs students sports games","c":"studentlife"},{"n":20,"t":"Event where students and alumni swap identities and find each other","c":"studentlife"},{"n":21,"t":"Student/alum champagne and shackles","c":"nontrans"},{"n":22,"t":"Random student-alum bar nights in different cities","c":"longterm"},{"n":23,"t":"Fashion show in which students dress/design for alumni","c":"studentlife"},{"n":24,"t":"Matching app where students and alumni take a personality quiz and are matched based on compatibility/similarity","c":"longterm"},{"n":25,"t":"Student and alumni art classes","c":"fun"},{"n":26,"t":"Gamify making connections with as many students or alumni as possible with different awards (most connections, longest connection, most active connections)","c":"longterm"},{"n":27,"t":"Match the oldest alum with the youngest student","c":"fun"},{"n":28,"t":"“Draw-my-life” presentation for older alums","c":"voice"},{"n":29,"t":"Alumni make an “advice tree” where they attach valuable pieces of advice to the branches that students can read","c":"voice"},{"n":30,"t":"Alumni-student movie event: groups of students and alumni are given a short script and have a day to make it into a short (5 min) film that is then screened at a mini festival the next day","c":"fun"},{"n":31,"t":"Alumni and student speed dating style event - professional or casual/social","c":"nontrans"},{"n":32,"t":"Time-travel event: alumni for many generations submit their favorite traditions from their time at the 5Cs and those are recreated by different years","c":"traditions"},{"n":33,"t":"Alumni and student day-in-a life video blog website. Students get to see what life can look like after graduation and alumni can see how the college experience has changed or stayed the same.","c":"transition"},{"n":34,"t":"Secret handshake making workshop between students and alumni","c":"fun"},{"n":35,"t":"For students with alumni mentors: students present “my alumni taught me…” and share the most valuable advice they’ve received","c":"voice"},{"n":36,"t":"Student and alumni team cook-off or bake-off (smaller event as a part of alumni weekend).","c":"fun"},{"n":37,"t":"Student and alumni round table discussion with college leadership about changes they want to see","c":"nontrans"},{"n":38,"t":"Student-alumni frat-style wedding party","c":"fun"},{"n":39,"t":"Collab with meta glasses that scans faces and identifies alumni out and about","c":"transition"},{"n":40,"t":"Alumni live painting event (painting a student)","c":"fun"},{"n":41,"t":"Student and alumni PEC funded trip to space","c":"fun"},{"n":42,"t":"Student and alumni skydiving event (builds trust)","c":"longterm"},{"n":43,"t":"Trauma bond students and alumni by putting them in VR headsets which makes them survive dangerous situations together","c":"longterm"},{"n":44,"t":"Alumni shadow the students for a day (role-reversal)","c":"studentlife"},{"n":45,"t":"SURP fund for alumni to get student interns","c":"voice"},{"n":46,"t":"Students and alumni go to the beach and have to build a boat in teams from basic resources and see whose boat goes the furthest","c":"fun"},{"n":47,"t":"Students and alumni put into teams (2 students, 2 alumni) on a deserted island and see who can outlast the rest","c":"nontrans"},{"n":48,"t":"Put students and alumni in a shark cage together - see what happens?","c":"longterm"},{"n":49,"t":"Big student-alumni sleepover in the hive - building forts to sleep in, cozy lights, movies, snacks, etc","c":"fun"},{"n":50,"t":"Study abroad but you go live with an alumni while at your new institution","c":"voice"},{"n":51,"t":"Student alumni hunger games (fight to the death)","c":"nontrans"},{"n":52,"t":"Student Alumni Beer league","c":"studentlife"},{"n":53,"t":"Virtual Alumni Race (raise money)","c":"studentlife"},{"n":54,"t":"Claremont Records (students & alumni compete with each other; who can hold their breath for longest underwater).","c":"fun"},{"n":55,"t":"Talent Show","c":"fun"},{"n":56,"t":"Great Student-Alumni competition of the 5Cs (students & alumni of each college contribute and collaborate to represent their institution in a competition)","c":"longterm"},{"n":57,"t":"Crafting classes with Alumni","c":"nontrans"},{"n":58,"t":"Alumni student initiative to craft an alma mater college song","c":"nontrans"},{"n":59,"t":"Alumni/Student family simulations (every 4 years you are matched to a “family” cohort, where you play a simulation game like Bit Life)","c":"longterm"},{"n":60,"t":"Capture the Alumni (capture the flag)","c":"fun"},{"n":61,"t":"Student Alumni Game Hub (Clash of Clans, Hay Day)","c":"fun"},{"n":62,"t":"Remote Farm where Claremont Alumni & Student collaborate and care for the land (without technology)","c":"fun"},{"n":63,"t":"Alumni Hotline (number connects to random alumni)","c":"transition"},{"n":64,"t":"Tradition Weekend; Alumni planned events/traditions for students (simulate going back in time) (Themed parties based on grad year; e.x. 80s themed)","c":"traditions"},{"n":65,"t":"Story sharing circles with alumni","c":"voice"},{"n":66,"t":"Camping trips student/alumni","c":"fun"},{"n":67,"t":"Alumni ski-beach day (roping them in)","c":"studentlife"},{"n":68,"t":"47 things to do as a young grad (incorporating meaningful bucket list ideas for them too)","c":"transition"},{"n":69,"t":"Student-Alumni Bake Off (inspired by San Francisco Cake Party)","c":"nontrans"},{"n":70,"t":"Website/Account for Alumni of The Day (alumni across space and time highlighted; how they're doing, sharing whatever they want about themselves)","c":"nontrans"},{"n":71,"t":"Student Alumni Psychedelics Retreat","c":"fun"},{"n":72,"t":"Annual StudentxAlumni movie/documentary production (people can sign up to contribute whatever way they please; rotate out so not same people each year)","c":"longterm"},{"n":73,"t":"Student Alumni Reddit-Equivalent (ask questions, share, upvote/downvote messages)","c":"nontrans"},{"n":74,"t":"Alumni “First Year Again” Day: alumni return to campus and get treated like first-years for a day: dining hall meal, campus tour, dorm games, club fair, etc.","c":"traditions"},{"n":75,"t":"Then vs. Now Dinner Tables: mixed generations get prompt cards comparing dating, classes, traditions, slang, nightlife, protests, fashion, and campus culture across decades.","c":"nontrans"},{"n":76,"t":"Tradition Adoption Program: student clubs “adopt” a discontinued alumni tradition and reinterpret it for the present day.","c":"traditions"},{"n":77,"t":"Alumni Mystery Box Night: alumni send objects, photos, songs, or memorabilia from their college years, and students guess the story behind each item before hearing the real version.","c":"longterm"},{"n":78,"t":"Senior-to-Alum Transition Buddy : every graduating senior gets paired with an alum who graduated 1–3 years earlier specifically to help with the emotional/social transition after college.","c":"transition"},{"n":79,"t":"The First 100 Days After Graduation Club","c":"transition"},{"n":80,"t":"Alumni Dorm Dinner","c":"studentlife"},{"n":81,"t":"Teach Me Your Era Night: students and alumni teach each other dances, games, slang, fashion trends, or traditions from their generation.","c":"traditions"},{"n":82,"t":"Alumni Club Guest Week: student organizations invite alumni members back to participate casually in a regular club meeting, rehearsal, practice, or event.","c":"voice"},{"n":83,"t":"Postcard From Your Future: alumni write anonymous postcards about what surprised them after graduation and students write responses about what they imagine their future will be like.","c":"transition"},{"n":84,"t":"Campus Legends Live: alumni share funny, strange, or memorable stories from their college years in a live storytelling event.","c":"nontrans"},{"n":85,"t":"Recreate the Photo: students recreate old alumni campus photos in the same locations, poses, and outfits.","c":"traditions"},{"n":86,"t":"Alumni Student Trivia Night","c":"fun"},{"n":87,"t":"Graduation Year Dinner Roulette: students and alumni from several different generations are randomly assigned to mixed dinner tables.","c":"longterm"},{"n":88,"t":"What I Wish I Knew at 22 Booth: alumni record short videos or voice notes sharing something they wish they had known when they graduated.","c":"voice"},{"n":89,"t":"Student Advice for Alumni Booth: students record funny or useful advice for alumni about current culture, technology, hobbies, campus life.","c":"longterm"},{"n":90,"t":"Lost Traditions Archive: students interview alumni to document forgotten traditions","c":"traditions"},{"n":91,"t":"Tradition Revival Grants: student-alumni teams receive small grants to recreate or reinvent an old campus tradition.","c":"traditions"},{"n":92,"t":"Campus Story Map: students and alumni add stories, photos, and memories to an interactive map of campus.","c":"longterm"},{"n":93,"t":"Alumni Memory Hotline: students call a phone number to hear a random short alumni story and can record their own story in return.","c":"nontrans"},{"n":94,"t":"Letters Across Generations: students and alumni anonymously exchange letters about college","c":"nontrans"},{"n":95,"t":"Still Belong Here Weekend: alumni return for student-led dinners, performances, club events, games, and traditions designed to make them feel part of campus life again.","c":"studentlife"},{"n":96,"t":"Student-alumni battle of the bands","c":"fun"},{"n":97,"t":"Porch concert alumni weekend at each dorm","c":"studentlife"},{"n":98,"t":"5-C wide alumni sports competition","c":"fun"},{"n":99,"t":"Alumni coffee connection instead of staff","c":"voice"},{"n":100,"t":"Campus Clue with alumni but you would need to know information about campus in a certain era, so engages alumni present. HMW make the transition between life as a student and life as an alumna easier?","c":"voice"}];
+const RING=new Set([17]);
+(function(){const ol=document.getElementById('appendix-list');IDEAS.forEach(i=>{const li=document.createElement('li');li.innerHTML=`${i.t} <span class="muted">(${CATS[i.c].name})</span>`;ol.appendChild(li);});})(); const RELATED=new Set([16,19,56,98]);
+function go(id){const e=document.getElementById(id);if(!e)return;const nav=document.querySelector('.bar');const off=(nav?nav.offsetHeight:0)+8;const y=e.getBoundingClientRect().top+window.scrollY-off;window.scrollTo({top:y,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
+/* mark the stage currently in view */
+const navBtns=[...document.querySelectorAll('.stages button')];const stageIds=['brief','empathize','define','ideate','prototype','test','launch','reflection'];
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const i=stageIds.indexOf(en.target.id);const k=i===7?6:i;navBtns.forEach((b,j)=>b.setAttribute('aria-current',String(j===k)));}});},{rootMargin:'-20% 0px -70% 0px'});stageIds.forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el);});}
+function zoom(src,alt){const d=document.getElementById('dlg'),i=document.getElementById('dlgimg');i.src=src;i.alt=alt;d.showModal();}
+document.getElementById('dlg').addEventListener('click',e=>{if(e.target.id==='dlg')e.target.close();});
+
+/* HMW list with counts */
+const counts={};IDEAS.forEach(i=>counts[i.c]=(counts[i.c]||0)+1);
+const hmw=document.getElementById('hmw');
+Object.keys(CATS).forEach(k=>{const li=document.createElement('li');li.style.setProperty('--sw',`var(--c-${k})`);li.innerHTML=`${CATS[k].hmw}<span>${counts[k]} ideas</span>`;hmw.appendChild(li);});
+
+/* explorer */
+const board=document.getElementById('board'),legend=document.getElementById('legend'),pick=document.getElementById('pick'),list=document.getElementById('explist');
+let active=null;
+IDEAS.forEach(i=>{const b=document.createElement('button');b.className='tile'+(RING.has(i.n)?' ring':'');b.style.setProperty('--sw',`var(--c-${i.c})`);b.setAttribute('role','listitem');b.setAttribute('aria-label',`Idea ${i.n}, ${CATS[i.c].name}: ${i.t}`);b.title=`${i.n}. ${i.t}`;b.innerHTML=`<small>${RING.has(i.n)||RELATED.has(i.n)?i.n:''}</small>`;b.addEventListener('click',()=>showIdea(i));b.addEventListener('mouseenter',()=>showIdea(i,true));board.appendChild(b);});
+function showIdea(i,hover){pick.style.setProperty('--sw',`var(--c-${i.c})`);pick.innerHTML=`<b>Idea ${i.n}${RING.has(i.n)?' (became the Family Network)':RELATED.has(i.n)?' (Color War drew on this)':''}</b>${i.t}<div class="small muted" style="margin-top:4px">${CATS[i.c].name}</div>`;}
+const max=Math.max(...Object.values(counts));
+Object.keys(CATS).forEach(k=>{const li=document.createElement('li');const b=document.createElement('button');b.setAttribute('aria-pressed','false');b.style.setProperty('--sw',`var(--c-${k})`);b.innerHTML=`<i></i><span>${CATS[k].name}<div class="bar" style="width:${counts[k]/max*100}%"></div></span><em>${counts[k]}</em>`;b.addEventListener('click',()=>setCat(active===k?null:k));li.appendChild(b);legend.appendChild(li);});
+function setCat(k){active=k;legend.querySelectorAll('button').forEach((b,idx)=>b.setAttribute('aria-pressed',String(Object.keys(CATS)[idx]===k)));
+  board.querySelectorAll('.tile').forEach((t,idx)=>t.classList.toggle('dim',k&&IDEAS[idx].c!==k));
+  list.innerHTML='';if(k){IDEAS.filter(i=>i.c===k).forEach(i=>{const li=document.createElement('li');li.innerHTML=`<b>${i.n}</b>${i.t}`;list.appendChild(li);});pick.style.setProperty('--sw',`var(--c-${k})`);pick.innerHTML=`<b>${CATS[k].name}</b>${counts[k]} ideas. ${CATS[k].hmw}`;}}
+
+/* interview filters */
+document.querySelectorAll('.filters .chip').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('.filters .chip').forEach(x=>x.setAttribute('aria-pressed','false'));c.setAttribute('aria-pressed','true');const f=c.dataset.f;let n=0;document.querySelectorAll('#cards .card').forEach(card=>{const ok=f==='all'||card.dataset.tags.split(' ').includes(f);card.classList.toggle('hide',!ok);if(ok)n++;});document.getElementById('cardcount').textContent=`Showing ${n} of 7.`;}));
+
+/* personas -> empathy map */
+document.querySelectorAll('.persona').forEach(p=>p.addEventListener('click',()=>{const on=p.getAttribute('aria-pressed')!=='true';document.querySelectorAll('.persona').forEach(x=>x.setAttribute('aria-pressed','false'));document.querySelectorAll('#quad span').forEach(s=>s.classList.remove('lit'));if(on){p.setAttribute('aria-pressed','true');const id=p.dataset.p;document.querySelectorAll('#quad span').forEach(s=>{if((s.dataset.p||'').split(' ').includes(id))s.classList.add('lit');});document.getElementById('quad').scrollIntoView({behavior:'smooth',block:'nearest'});}}));
+
+/* tabs */
+function tab(k){['fn','cw'].forEach(x=>{document.getElementById('t-'+x).setAttribute('aria-selected',String(x===k));document.getElementById('tab-'+x).hidden=x!==k;});}
+</script>
+</body>
+</html>
